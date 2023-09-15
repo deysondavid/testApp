@@ -1,8 +1,11 @@
 export interface Sucursal {
-    idsucursal:number
-    codigo: number;
-    descripcion: string;
-    direccion: string;
-    fecha_creacion: string;
-    idmodena: number;   
-  }
+  IdSucursal: number;
+  Codigo: number;
+  Descripcion?: string;
+  Direccion?: string;
+  Identificacion?: string;
+  IdMoneda?: number;
+  NombreMoneda?: string;
+  Simbolo?: string;
+  FechaCreacion?: string;
+}

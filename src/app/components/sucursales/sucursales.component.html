@@ -1,38 +1,65 @@
 <div class="mat-elevation-z8">
+    <button mat-raised-button color="primary" (click)="abrirModalAgregarDatos()">Agregar Datos</button>
+
     <table mat-table [dataSource]="dataSource">
-        <ng-container matColumnDef="idsucursal">
-            <th mat-header-cell *matHeaderCellDef> idsucursal </th>
-            <td mat-cell *matCellDef="let element"> {{element.idsucursal}} </td>
+        <ng-container matColumnDef="idSucursal">
+            <th mat-header-cell *matHeaderCellDef> Id Sucursal </th>
+            <td mat-cell *matCellDef="let element"> {{element.idSucursal}} </td>
         </ng-container>
+        <ng-container matColumnDef="identificacion">
+            <th mat-header-cell *matHeaderCellDef> Identificación </th>
+            <td mat-cell *matCellDef="let element"> {{element.identificacion}} </td>
+        </ng-container>
+
         <ng-container matColumnDef="fecha_modificacion">
-            <th mat-header-cell *matHeaderCellDef> fecha_modificacion </th>
-            <td mat-cell *matCellDef="let element"> {{element.fecha_creacion}} </td>
+            <th mat-header-cell *matHeaderCellDef> Fecha Modificación </th>
+            <td mat-cell *matCellDef="let element"> {{ element.fechaCreacion | date:'yyyy-MM-dd' }} </td>
         </ng-container>
+        
         <ng-container matColumnDef="codigo">
-            <th mat-header-cell *matHeaderCellDef> codigo </th>
+            <th mat-header-cell *matHeaderCellDef> Código </th>
             <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
         </ng-container>
         <ng-container matColumnDef="descripcion">
-            <th mat-header-cell *matHeaderCellDef> descripcion </th>
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
             <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
         </ng-container>
+        <ng-container matColumnDef="simbolo">
+            <th mat-header-cell *matHeaderCellDef> Moneda </th>
+            <td mat-cell *matCellDef="let element"> {{element.simbolo}} </td>
+        </ng-container>
+
         <ng-container matColumnDef="actions">
-    
-            <mat-cell *matCellDef="let row; let i=index;">
-                <button mat-icon-button color="accent"
-                    (click)="edit()">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let element"> 
+                <button mat-icon-button color="accent" (click)="edit(element)">
                     <mat-icon aria-label="Edit">edit</mat-icon>
                 </button>
 
-                <button mat-icon-button color="accent" (click)="deleteItem()">
+                <button mat-icon-button color="danger" (click)="abrirModalConfirmacion(element)">
                     <mat-icon aria-label="Delete">delete</mat-icon>
                 </button>
-            </mat-cell>
+            </td>
+
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    <mat-paginator [pageSizeOptions]="[ 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
     </mat-paginator>
 </div>
+
+<!-- HTML del componente para la modal de eliminación -->
+<div class="modal-overlay" *ngIf="mostrarModalConfirmacion">
+    <div class="modal-content">
+      <div class="modal-title">¿Estás seguro de que deseas eliminar este elemento?</div>
+      <!-- Otros contenidos de la modal de eliminación aquí -->
+  
+      <!-- Botones de confirmación y cancelación -->
+      <button class="confirm-button" (click)="confirmarEliminacion()">Confirmar</button>
+      <button class="cancel-button" (click)="cerrarModalConfirmacion()">Cancelar</button>
+    </div>
+  </div>
+  
+  

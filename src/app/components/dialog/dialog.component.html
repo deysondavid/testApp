@@ -1,0 +1,42 @@
+<div class="container">
+    <h2>Información Sucursal</h2>
+    <form [formGroup]="sucursalForm">
+
+        <mat-form-field class="full-width">
+            <mat-label>Código</mat-label>
+            <input type="number" id="Codigo" formControlName="Codigo" matInput>
+        </mat-form-field>
+
+               
+        <mat-form-field class="full-width">
+            <mat-label>Fecha Creación</mat-label>
+            <input type="text" id="FechaCreacion" formControlName="FechaCreacion" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Identificación</mat-label>
+            <input type="text" id="Identificacion" formControlName="Identificacion" matInput>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Descripción</mat-label>
+            <input type="text" id="Descripcion" formControlName="Descripcion" matInput>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Dirección</mat-label>
+            <input type="text" id="Direccion" formControlName="Direccion" matInput>
+        </mat-form-field>
+ 
+        <mat-form-field class="full-width">
+            <mat-label>Moneda</mat-label>
+            <mat-select formControlName="idMoneda">
+                <mat-option *ngFor="let moneda of monedas" [value]="moneda.idMoneda">{{ moneda.simbolo }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" [disabled]="!sucursalForm.valid" (click)="agregarDatos()">Agregar Datos</button>
+    </form>
+</div>
