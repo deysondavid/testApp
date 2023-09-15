@@ -1,0 +1,38 @@
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="idsucursal">
+            <th mat-header-cell *matHeaderCellDef> idsucursal </th>
+            <td mat-cell *matCellDef="let element"> {{element.idsucursal}} </td>
+        </ng-container>
+        <ng-container matColumnDef="fecha_modificacion">
+            <th mat-header-cell *matHeaderCellDef> fecha_modificacion </th>
+            <td mat-cell *matCellDef="let element"> {{element.fecha_creacion}} </td>
+        </ng-container>
+        <ng-container matColumnDef="codigo">
+            <th mat-header-cell *matHeaderCellDef> codigo </th>
+            <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+        </ng-container>
+        <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef> descripcion </th>
+            <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+    
+            <mat-cell *matCellDef="let row; let i=index;">
+                <button mat-icon-button color="accent"
+                    (click)="edit()">
+                    <mat-icon aria-label="Edit">edit</mat-icon>
+                </button>
+
+                <button mat-icon-button color="accent" (click)="deleteItem()">
+                    <mat-icon aria-label="Delete">delete</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+</div>
